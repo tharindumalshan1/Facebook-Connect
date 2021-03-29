@@ -22,6 +22,10 @@ User Name : <%=objUserProfile.getUserName() %> <br>
 ID : <%=objUserProfile.getId() %> <br>
 Email : <%=objUserProfile.getEmail() %> <br>
 Picture : <%=objUserProfile.getPicture()%> <br>
+Gender : <%=objUserProfile.getGender()%> <br>
+BirthDay : <%=objUserProfile.getBirthday()%> <br>
+HomeTown : <%=objUserProfile.getHometown()%> <br><br>
+
 
 <img src="<%=objUserProfile.getPicture()%>" alt="">
 

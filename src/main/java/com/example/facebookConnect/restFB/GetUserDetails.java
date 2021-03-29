@@ -14,15 +14,6 @@ import java.util.Arrays;
 public class GetUserDetails {
     private static final Logger logger = LogManager.getLogger(GetUserDetails.class);
 
-    public UserProfile GetProfileinfor(String accesstoken) {
-        UserProfile objUserProfile=new UserProfile();
-        FacebookClient facebookClient = new DefaultFacebookClient(accesstoken, Version.VERSION_10_0);
-        User user = facebookClient.fetchObject("me", User.class);
-        logger.info("User name : {}", user.getName());
-        objUserProfile.setUserName(user.getName());
-        return objUserProfile;
-    }
-
     public UserProfile  GetProfileinfoOther(String accesstoken) {
 
         UserProfile objUserProfile=new UserProfile();
@@ -31,7 +22,7 @@ public class GetUserDetails {
             FacebookClient facebookClient = new DefaultFacebookClient(accesstoken, Version.VERSION_10_0);
 
             JsonObject fetchObjectsResults = facebookClient.fetchObjects(Arrays.asList("me", "123456789"),
-                    JsonObject.class, Parameter.with("fields", "name,id,email,picture"));
+                    JsonObject.class, Parameter.with("fields", "name,id,email,picture,gender,birthday,hometown"));
 
             logger.info(fetchObjectsResults);
 
@@ -40,6 +31,11 @@ public class GetUserDetails {
             objUserProfile.setId(temp.substring(temp.indexOf("\",\"id\":\"")+8, temp.indexOf("\",\"email\"")));
             objUserProfile.setEmail(temp.substring(temp.indexOf("\",\"email\"")+11, temp.indexOf("\",\"picture\":")));
             objUserProfile.setPicture(temp.substring(temp.indexOf("\"url\":\"")+7, temp.indexOf("\",\"width\"")));
+            objUserProfile.setGender(temp.substring(temp.indexOf("\"gender\":\"")+10 , temp.indexOf("\",\"birthday\"")));
+            objUserProfile.setBirthday(temp.substring(temp.indexOf("\",\"birthday\"")+15,temp.indexOf("\",\"hometown\"") ));
+            objUserProfile.setHometown(temp.substring(temp.indexOf("\",\"name\":\"")+10 ,temp.indexOf("\"}")));
+
+
         } catch (Exception e){
             logger.error("Error", e);
         }

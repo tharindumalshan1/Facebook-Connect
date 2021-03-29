@@ -5,6 +5,33 @@ public class UserProfile {
     private String id;
     private String email;
     private String picture;
+    private String gender;
+    private String birthday;
+    private String hometown;
+
+    public String getHometown() {
+        return hometown;
+    }
+
+    public void setHometown(String hometown) {
+        this.hometown = hometown;
+    }
+
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
 
     public String getId() {
         return id;
